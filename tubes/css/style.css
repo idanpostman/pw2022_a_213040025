@@ -1,0 +1,35 @@
+body {
+  background-color: #eff0f3;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.navbar-brand {
+  margin-left: 25px;
+  font-family: "Noto Serif", serif;
+  font-size: 32px;
+}
+.navbar-nav a {
+  margin: 15px 15px;
+  font-size: 18px;
+}
+
+.navbar-nav .garis {
+  padding-top: 5px;
+}
+.navbar-collapse {
+  width: 1000px;
+}
+
+.link a {
+  display: inline-block;
+  margin-left: 10px;
+  color: #111;
+}
+
+.link a:hover .bi-facebook {
+  color: #3b5998;
+}
+
+.link a:hover .bi-instagram {
+  color: #c13584;
+}
