@@ -1,3 +1,16 @@
+<?php 
+// Koneksi ke file Function
+require 'function.php';
+
+// query untuk tampil data 
+$stock = query("SELECT * FROM stock");
+
+// Jika tombol name "cari" ditekan
+if(isset($_POST["cari"])) {
+  $stock = cari($_POST["keyword"]);
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,12 +34,11 @@
      <!-- bootstrap icon -->
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 
-
      <!-- my css -->
      <link rel="stylesheet" href="css/style.css">
 
   </head>
-  <body>
+<body>
       <!-- Awal Navbar -->
   <nav class="navbar navbar-expand-lg "style="background-color:#E3BEC6 ;">
   <div class="container-fluid">
@@ -34,9 +46,9 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav fw-bolder">
-             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,12 +64,12 @@
               </div>
         <a class="nav-link text-dark" href="#">About</a>
         <a class="garis text-dark">|</a>
-        <a class="nav-link text-dark fs-3 my-auto" href="#"><i class="bi bi-box-arrow-right"></i></a>
+        <a class="nav-link text-dark fs-3 my-auto" href="logout.php"><i class="bi bi-box-arrow-right"></i></a>
       </div>
     </div>
   </div>
 </nav>
-        <!-- Akhir Navbar -->
+    <!-- Akhir Navbar -->
  <!-- Container -->
  <div class="container">
    <div class="row my-3">
@@ -68,61 +80,91 @@
    </div>
    <div class="row">
      <div class="col-md">
-       <a href="tambah.php" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget</a>
+       <!-- Button trigger modal Tambah Data Gadget -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget
+        </button>
+        <!-- Akhir Button Trigger Modal -->
        <a href="#" class="btn btn-danger ms-1" target="_blank"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Export ke PDF</a>
      </div>
    </div>
+
+    <!-- Kolom Search -->
+   <div class="search row my-4">
+     <div class="col">
+          <form action="" method = "post" autocomplete="off" autofocus >
+             <input type="text" name="keyword" placeholder="Cari Sesuatu . . ." class="form control form-control-sm" autofocus autocomplete="off">
+             <button type="submit" name="cari" class="btn btn-sm" style="background-color:#E3BEC6;"> Cari ! </button> 
+         </form>
+     </div>
+   </div>
+      <!-- Akhir Kolom Search -->
+      <!-- Tabel -->
    <div class="row my-5">
      <div class="col-md">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
-                <tr>
+                  <tr>
                     <th>No</th>
                     <th>Gambar</th>
                     <th>Nama Gadget</th>
                     <th>Deksripsi</th>
                     <th>Stock</th>
                     <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><img src="img/xiaomi-mi-a1.jpg" width="75"></td>
-                    <td>Xiaomi MI A1</td>
-                    <td>Smartphone</td>
-                    <td>100</td>
-                    <td>
-                      <button type="button" class="btn btn-warning btn-sm">Ubah</button>
-                      <button type="button" class="btn btn-danger btn-sm">Hapus</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-     </div>
-   </div>
-  </div>
-<!-- Akhir Containner -->
-<!-- Footer -->
-<div class="container-fluid" style="background-color:#E3BEC6 ;">
-  <div class="row">
-    <div class="col-md-6">
-      <h4 class="text-uppercase fw-bold">About</h4>
-      <p class="text-lowercase">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-         Deleniti minus provident commodi nihil? Adipisci, expedita? Praesentium amet possimus neque quaerat accusantium, officiis ipsa inventore harum et, aliquid enim eligendi quas.</p>
-    </div>
-    <div class="col-md-6 text-center link">
-      <h4 class="text-uppercase fw-bold">Link Account</h4>
-      <a href="https://instagram.com/idanpostman/" target="_blank"><i class="bi bi-instagram fs-2"></i></a>
-      <a href="https://web.facebook.com/wildan891" target="_blank"><i class="bi bi-facebook fs-2"></i></a>
-    </div>
-  </div>
-  <footer class="text-center" style="padding: 5px">
-    <p>Created with <i class="bi bi-heart-fill" style="color: red;"></i> by <u class="fw-bold">Wildan Fauzan</u></p>
-  </footer>
-</div>
+                 </tr>
+               </thead>
+             <tbody>
+                  <?php $i = 1; ?>
+                  <?php foreach($stock as $row) :?>
 
-<!-- Akhir Footer -->
+                  <tr>
+                    <td><?= $i;?></td>
+                    <td><img src="img/<?= $row['gambar'];?>" width="75"></td>
+                    <td><?= $row['nama_barang']; ?></td>
+                    <td><?= $row['deskripsi']; ?></td>
+                    <td><?= $row['stock']; ?></td>
+                    <td>
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?=$row['id_barang'];?>">
+                      Edit
+                    </button>
+                    <input type="hidden" name="hapus" value="<?= $row['id_barang']; ?>">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?=$row['id_barang'];?>">
+                      Delete
+                    </button>
+                    </td>
+                  </tr>
+                  <!-- Link Modal Edit -->
+                  <?php require 'edit.php';?>
+                  <!-- Link Modal Delete -->
+                  <?php require 'delete.php';?>
+                  <?php $i++; ?>
+                  <?php endforeach ?>  
+               </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- Akhir Table -->
+<!-- Akhir Containner -->
+      <!-- Footer -->
+      <div class="container-fluid" style="background-color:#E3BEC6 ;">
+        <div class="row">
+          <div class="col-md-6">
+            <h4 class="text-uppercase fw-bold">About</h4>
+            <p class="text-lowercase">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Deleniti minus provident commodi nihil? Adipisci, expedita? Praesentium amet possimus neque quaerat accusantium, officiis ipsa inventore harum et, aliquid enim eligendi quas.</p>
+          </div>
+          <div class="col-md-6 text-center link">
+            <h4 class="text-uppercase fw-bold">Link Account</h4>
+            <a href="https://instagram.com/idanpostman/" target="_blank"><i class="bi bi-instagram fs-2"></i></a>
+            <a href="https://web.facebook.com/wildan891" target="_blank"><i class="bi bi-facebook fs-2"></i></a>
+          </div>
+        </div>
+        <footer class="text-center" style="padding: 5px">
+          <p>Created with <i class="bi bi-heart-fill" style="color: red;"></i> by <u class="fw-bold">Wildan Fauzan</u></p>
+        </footer>
+      </div>
+      <!-- Akhir Footer -->
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
@@ -133,10 +175,32 @@
      <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
      <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
-     <script>
-       $(document).ready(function () {
-       $('#example').DataTable();
-       });
-     </script>
-  </body>
+
+          <!-- Modal Tambah Data -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah data gadget</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body" >
+                <form action="" method="POST" autocomplete="off" enctype="multipart/form-data">
+                    <input type="text" name="namagadget" placeholder="Nama Gadget" class="form-control"  required> 
+                    <br>
+                    <input type="text" name="deskripsi" placeholder="Deskripsi Gadget" class="form-control" required> 
+                    <br>
+                    <input type="number" name="stock" placeholder="Stock" class="form-control" required> 
+                    <br>
+                    <input type="file" name="gambar" class="form-control">
+                    <br>
+                      <div class="modal-footer">
+                        <button type="submit" name="addnewgadget" class="btn btn" style="background-color:#E3BEC6 ;">Submit</button> 
+                      </div>
+                </form>
+              </div> 
+            </div>
+          </div>
+        </div>
+</body>
 </html>

@@ -1,3 +1,10 @@
+<?php 
+require 'function.php';
+
+// Untuk tampil data
+$stockmasuk = mysqli_query($conn, "SELECT * FROM masuk m, stock s WHERE s.id_barang = m.id_barang");
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -36,7 +43,7 @@
     </button>
     <div class="collapse navbar-collapse text-light justify-content-end" id="navbarNavAltMarkup">
       <div class="navbar-nav fw-bolder">
-             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDarkDropdown">
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -68,7 +75,10 @@
    </div>
    <div class="row">
      <div class="col-md">
-       <a href="tambah.php" class="btn btn-primary"><i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget</a>
+       <!-- Button Modal -->
+       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+           <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget
+        </button>
        <a href="#" class="btn btn-danger ms-1" target="_blank"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Export ke PDF</a>
      </div>
    </div>
@@ -84,12 +94,14 @@
                 </tr>
             </thead>
             <tbody>
+              <?php foreach ($stockmasuk as $row) : ?>
                 <tr>
-                    <td>2022-12-03 12:00:00</td>
-                    <td>Xiaomi MI A1</td>
-                    <td>100</td>
-                    <td>PT JAYA ABADI</td>
+                    <td><?= $row['tanggal'];?></td>
+                    <td><?= $row['nama_barang']; ?></td>
+                    <td><?= $row['qty']; ?></td>
+                    <td><?= $row['keterangan']; ?></td>
                 </tr>
+                <?php endforeach ?>
             </tbody>
         </table>
      </div>
@@ -126,10 +138,40 @@
      <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js"></script>
      <script src="https://cdn.datatables.net/1.12.0/js/dataTables.bootstrap5.min.js"></script>
 
-     <script>
-       $(document).ready(function () {
-       $('#example').DataTable();
-       });
-     </script>
   </body>
+   <!-- MODAL -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Barang Masuk</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="" method="POST" autocomplete="off">
+                        <select name="gadgetnya" class="form-control"> 
+                            <?php
+                              $ambilsemuadata = mysqli_query($conn, "SELECT * FROM stock");
+                                while ($fetcharray = mysqli_fetch_array($ambilsemuadata)) {
+                                    $namabarangnya = $fetcharray['nama_barang'];
+                                    $idbarangnya = $fetcharray['id_barang'];
+                                    ?>
+                                      <option value="<?= $idbarangnya;?>"><?= $namabarangnya;?></option>
+                            <?php } ?>
+                        </select>
+                        <br>
+                        <input type="number" name="qty" class="form-control" placeholder="Quantity" required>
+                        <br>
+                        <input type="text" name="pengirim" placeholder="Pengirim" class="form-control" required> 
+                        <br>
+                        <br>
+                           <div class="modal-footer">
+                              <button type="submit" name="barangmasuk" class="btn btn" style="background-color:#E3BEC6 ;">Submit</button> 
+                           </div>
+                 </form>
+              </div> 
+          </div>
+        </div>
+      </div>
+      <!-- AKhiR Modal -->
 </html>

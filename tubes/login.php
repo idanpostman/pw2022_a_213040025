@@ -1,3 +1,37 @@
+<?php 
+session_start();
+require 'function.php';
+
+
+if(isset ($_POST["login"]) ) {
+  $username = $_POST["username"];
+  $password = $_POST["password"];
+
+  // mengecek database ada atau tidak datanya
+  $cekdatabase = mysqli_query($conn, "SELECT * FROM user WHERE
+          username= '$username' and password='$password'");
+  
+  $hitung = mysqli_num_rows($cekdatabase);
+
+  if($hitung > 0) {
+    // $_SESSION['log'] = 'true';
+    header('location: index.php');
+    
+  }else {
+    $error = true;
+  }
+
+}
+// if(!isset($_SESSION['log'])) {
+
+// }else {
+//   header('location: index.php');
+// }
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -44,6 +78,10 @@
                     </div>
                     <button type="submit" name="login" class="btn text-uppercase my-3" style="background-color:#E3BEC6 ;">Login</button>
              </form>
+             <?php if(isset($error)) : ?>
+                 <p style="color:red; font-style:italic; ">username / password salah</p>
+             <?php endif; ?>
+             <a href="#">Register</a>
          </div>
      </div>
  </div>
