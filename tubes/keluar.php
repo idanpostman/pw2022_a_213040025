@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+// CEK DULU ADA SESSIONNYA APA TIDAK
+// jika tidak ada session login kembalikan usernya ke halaman login
+if( !isset($_SESSION['login'])) {
+  header('location: login.php');
+}
 require 'function.php';
 
 // Variabel untuk tampil data
@@ -48,12 +55,12 @@ $stockkeluar = mysqli_query($conn, "SELECT * FROM keluar k, stock s WHERE s.id_b
                 <ul class="navbar-nav">
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Barang Keluar
+                      Gadget Keluar
                     </a>
                     <ul class="dropdown-menu" style="background-color:#E3BEC6 ;" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li><a class="dropdown-item" href="index.php">Stock Gadget</a></li>
-                      <li><a class="dropdown-item" href="masuk.php">Barang Masuk</a></li>
-                      <li><a class="dropdown-item" href="keluar.php">Barang Keluar</a></li>
+                      <li><a class="dropdown-item" href="masuk.php">Gadget Masuk</a></li>
+                      <li><a class="dropdown-item" href="keluar.php">Gadget Keluar</a></li>
                     </ul>
                   </li>
                 </ul>

@@ -1,39 +1,16 @@
 <?php 
-session_start();
-
-// Jika sudah ada/sudah login pindahkan ke halaman index (tidak bisa balik ke halaman login)
-if(isset($_SESSION['login'])) {
-  header('location: index.php');
-  exit;
-}
-
 require 'function.php';
 
-if(isset($_POST['login'])) {
-  $username = $_POST['username'];
-  $password = $_POST['password'];
-
-  $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'" );
-
-    // CEK USERNAME
-    if(mysqli_num_rows($result) === 1) {
-         
-        // jika ada user cek passwordnya jika cocok 
-        $row = mysqli_fetch_assoc($result);
-        // Bandingkan password yang diinput user dengan password yang sudah diacak di database
-        if(password_verify($password, $row['password'])) {
-            // Begitu berhasil Set SESSION-NYA
-            $_SESSION['login'] = true;
-            header('location: index.php');
-            exit;
-        }
+if(isset($_POST["register"])) {
+    if(registrasi($_POST) > 0 ) {
+        header('location: index.php');
+        echo "<script>
+        alert('Register Berhasil !') 
+         </script>";
+    } else {
+        echo mysqli_error($conn);
     }
-
-    $error = true;
 }
-
-
-
 
 ?>
 
@@ -75,19 +52,18 @@ if(isset($_POST['login'])) {
      <div class="row">
          <div class="col-md-6 text-center" style="background-image:url('img/memphis-colorful.webp') ;">
              <form action="" method="POST">
-                 <h4 class="my-5 fw-bold">Login</h4>
-                 <div class="my-4">
-                 <input type="text" class="form-control w-50" name="username" placeholder="Username">
+                 <h4 class="my-5 fw-bold">Register</h4>
+                    <div class="my-3">
+                        <input type="text" class="form-control w-50" name="username" placeholder="Username">
                     </div>
-                    <div class="my-4">
-                 <input type="password" class="form-control w-50" name="password" placeholder="Password">
+                    <div class="my-3">
+                        <input type="password" class="form-control w-50" name="password" placeholder="Password">
                     </div>
-                    <button type="submit" name="login" class="btn text-uppercase my-3" style="background-color:#E3BEC6 ;">Login</button>
+                    <div class="my-3">
+                        <input type="password" class="form-control w-50" name="password2" placeholder="Konfirmasi Password">
+                    </div>
+                    <button type="submit" name="register" class="btn text-uppercase my-3" style="background-color:#E3BEC6 ;">Register</button>
              </form>
-             <?php if(isset($error)) : ?>
-                 <p style="color:red; font-style:italic; ">username / password salah</p>
-             <?php endif; ?>
-             <a href="registrasi.php">Register</a>
          </div>
      </div>
  </div>

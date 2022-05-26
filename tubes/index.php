@@ -1,4 +1,12 @@
 <?php 
+session_start();
+
+// CEK DULU ADA SESSIONNYA APA TIDAK
+// jika tidak ada session login kembalikan usernya ke halaman login
+if( !isset($_SESSION['login'])) {
+  header('location: login.php');
+}
+
 // Koneksi ke file Function
 require 'function.php';
 
@@ -42,7 +50,7 @@ if(isset($_POST["cari"])) {
       <!-- Awal Navbar -->
   <nav class="navbar navbar-expand-lg "style="background-color:#E3BEC6 ;">
   <div class="container-fluid">
-    <a class="navbar-brand text-dark fw-bolder" href="#">PARAGADGET</a>
+    <a class="navbar-brand text-dark fw-bolder text-" href="#">PARAGADGET</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -56,8 +64,8 @@ if(isset($_POST["cari"])) {
                     </a>
                     <ul class="dropdown-menu" style="background-color:#E3BEC6 ;" aria-labelledby="navbarDarkDropdownMenuLink">
                       <li><a class="dropdown-item" href="index.php">Stock Gadget</a></li>
-                      <li><a class="dropdown-item" href="masuk.php">Barang Masuk</a></li>
-                      <li><a class="dropdown-item" href="keluar.php">Barang Keluar</a></li>
+                      <li><a class="dropdown-item" href="masuk.php">Gadget Masuk</a></li>
+                      <li><a class="dropdown-item" href="keluar.php">Gadget Keluar</a></li>
                     </ul>
                   </li>
                 </ul>
