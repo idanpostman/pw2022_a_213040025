@@ -185,7 +185,7 @@ if(isset($_POST['hapusbarang'])) {
     }
 }
 
-
+// Function untuk Registrasi
 function registrasi($data) {
     global $conn;
 

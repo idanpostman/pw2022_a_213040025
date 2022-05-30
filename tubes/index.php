@@ -101,14 +101,16 @@ if(isset($_POST["cari"])) {
    <div class="search row my-4">
      <div class="col">
           <form action="" method = "post" autocomplete="off" autofocus >
-             <input type="text" name="keyword" placeholder="Cari Sesuatu . . ." class="form control form-control-sm" autofocus autocomplete="off">
-             <button type="submit" name="cari" class="btn btn-sm" style="background-color:#E3BEC6;"> Cari ! </button> 
-         </form>
+             <input type="text" name="keyword" placeholder="Cari Sesuatu . . ." 
+             class="form control form-control-sm" autofocus autocomplete="off" id="keyword">
+             <button type="submit" name="cari" class="btn btn-sm" id="tommbol-cari" style="background-color:#E3BEC6;"> Cari ! </button> 
+          </form>
      </div>
-   </div>
+   </div> 
       <!-- Akhir Kolom Search -->
+
       <!-- Tabel -->
-   <div class="row my-5">
+   <div id="container" class="row my-5">
      <div class="col-md">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
@@ -173,6 +175,9 @@ if(isset($_POST["cari"])) {
         </footer>
       </div>
       <!-- Akhir Footer -->
+
+    <!-- Link Javascript -->
+    <script src="js/script.js"></script>
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
