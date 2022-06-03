@@ -24,7 +24,7 @@ if(isset($_POST["cari"])) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PARAGADGET | pengelolaan data gadget </title>
+    <title>Stock Gadget</title>
 
      <!-- Fonts Google -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -93,7 +93,7 @@ if(isset($_POST["cari"])) {
            <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget
         </button>
         <!-- Akhir Button Trigger Modal -->
-       <a href="#" class="btn btn-danger ms-1" target="_blank"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Export ke PDF</a>
+       <a href="cetak.php" class="btn btn-danger ms-1" target="_blank"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Export ke PDF</a>
      </div>
    </div>
 
@@ -103,7 +103,7 @@ if(isset($_POST["cari"])) {
           <form action="" method = "post" autocomplete="off" autofocus >
              <input type="text" name="keyword" placeholder="Cari Sesuatu . . ." 
              class="form control form-control-sm" autofocus autocomplete="off" id="keyword">
-             <button type="submit" name="cari" class="btn btn-sm" id="tommbol-cari" style="background-color:#E3BEC6;"> Cari ! </button> 
+             <button type="submit" name="cari" class="btn btn-sm" id="tombol-cari" style="background-color:#E3BEC6;"> Cari ! </button> 
           </form>
      </div>
    </div> 

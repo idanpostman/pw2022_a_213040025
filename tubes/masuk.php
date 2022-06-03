@@ -17,7 +17,7 @@ $stockmasuk = mysqli_query($conn, "SELECT * FROM masuk m, stock s WHERE s.id_bar
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PARAGADGET | pengelolaan data gadget </title>
+    <title>Gadget Masuk</title>
 
      <!-- Fonts Google -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,9 +84,8 @@ $stockmasuk = mysqli_query($conn, "SELECT * FROM masuk m, stock s WHERE s.id_bar
      <div class="col-md">
        <!-- Button Modal -->
        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-           <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Data Gadget
+           <i class="bi bi-person-plus-fill"></i>&nbsp;Tambah Stock Gadget
         </button>
-       <a href="#" class="btn btn-danger ms-1" target="_blank"><i class="bi bi-file-earmark-pdf-fill"></i>&nbsp;Export ke PDF</a>
      </div>
    </div>
    <div class="row my-5">
