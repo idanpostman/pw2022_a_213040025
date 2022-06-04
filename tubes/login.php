@@ -43,7 +43,7 @@ if(isset($_POST['login'])) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PARAGADGET | pengelolaan data gadget </title>
+    <title>PARAGADGET</title>
     <!-- Fonts Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

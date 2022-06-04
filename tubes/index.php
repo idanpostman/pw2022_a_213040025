@@ -86,7 +86,7 @@ if(isset($_POST["cari"])) {
      </div>
      <hr>
    </div>
-   <div class="row">
+   <div class="row mb-4">
      <div class="col-md">
        <!-- Button trigger modal Tambah Data Gadget -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -98,19 +98,23 @@ if(isset($_POST["cari"])) {
    </div>
 
     <!-- Kolom Search -->
-   <div class="search row my-4">
-     <div class="col">
+   <div class="search row my-3">
+    <div class="col">
           <form action="" method = "post" autocomplete="off" autofocus >
              <input type="text" name="keyword" placeholder="Cari Sesuatu . . ." 
-             class="form control form-control-sm" autofocus autocomplete="off" id="keyword">
-             <button type="submit" name="cari" class="btn btn-sm" id="tombol-cari" style="background-color:#E3BEC6;"> Cari ! </button> 
+             class="form control  me-3" autofocus autocomplete="off" id="keyword" width="100">
+             <button type="submit" name="cari" class="btn btn" id="tombol-cari" style="background-color:#E3BEC6;"> Cari ! </button> 
           </form>
-     </div>
+      </div>
    </div> 
       <!-- Akhir Kolom Search -->
 
+    <!-- Link Urutan Data -->
+    <?php require 'mengurutkan.php'; ?>
+    
+
       <!-- Tabel -->
-   <div id="container" class="row my-5">
+   <div id="container" class="row mt-3">
      <div class="col-md">
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
@@ -135,11 +139,11 @@ if(isset($_POST["cari"])) {
                     <td><?= $row['stock']; ?></td>
                     <td>
                     <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#edit<?=$row['id_barang'];?>">
-                      Edit
+                      Ubah
                     </button>
                     <input type="hidden" name="hapus" value="<?= $row['id_barang']; ?>">
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete<?=$row['id_barang'];?>">
-                      Delete
+                      Hapus
                     </button>
                     </td>
                   </tr>
