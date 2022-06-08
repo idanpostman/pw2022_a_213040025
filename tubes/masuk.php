@@ -156,8 +156,8 @@ $stockmasuk = mysqli_query($conn, "SELECT * FROM masuk m, stock s WHERE s.id_bar
             <div class="modal-body">
               <form action="" method="POST" autocomplete="off">
                         <select name="gadgetnya" class="form-control"> 
-                            <?php
-                              $ambilsemuadata = mysqli_query($conn, "SELECT * FROM stock");
+                            <?php 
+                            $ambilsemuadata = mysqli_query($conn, "SELECT * FROM stock ");
                                 while ($fetcharray = mysqli_fetch_array($ambilsemuadata)) {
                                     $namabarangnya = $fetcharray['nama_barang'];
                                     $idbarangnya = $fetcharray['id_barang'];
