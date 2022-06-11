@@ -147,9 +147,9 @@ if(isset($_POST["cari"])) {
                     </button>
                     </td>
                   </tr>
-                  <!-- Link Modal Edit -->
+                  <!-- Link Modal Ubah  -->
                   <?php require 'edit.php';?>
-                  <!-- Link Modal Delete -->
+                  <!-- Link Modal Hapus -->
                   <?php require 'delete.php';?>
                   <?php $i++; ?>
                   <?php endforeach ?>  
@@ -160,6 +160,7 @@ if(isset($_POST["cari"])) {
     </div>
     <!-- Akhir Table -->
 <!-- Akhir Containner -->
+
       <!-- Footer -->
       <div class="container-fluid" style="background-color:#E3BEC6 ;">
         <div class="row">

@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal Halaman Hapus-->
 <div class="modal fade" id="delete<?= $row['id_barang'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">

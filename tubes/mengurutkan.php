@@ -1,3 +1,5 @@
+<!-- Sorting/mengurutkan Ascending dan Descending -->
+
 <style>
     .input-group i {
         font-size: 22px;
@@ -38,7 +40,7 @@ if (isset($_POST["stock_turun"])) {
     <div class="container-urutan">
         <div class="col d-inline-flex">
          <div class="input-group me-3">
-             <button class="btn btn dropdown-toggle" style="background-color:#E3BEC6 ;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sort-up-alt"></i>&nbsp;</button>
+             <button class="btn btn dropdown-toggle" style="background-color:#E3BEC6 ;" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-sort-down-alt"></i>&nbsp;</button>
                 <ul class="dropdown-menu" style="background-color:#E3BEC6 ;">
                     <li><button class="dropdown-item" name="gadget_naik" type="submit">Gadget</button></li>
                     <li><button class="dropdown-item" name="deskripsi_naik" type="submit">Deskripsi</button></li>
